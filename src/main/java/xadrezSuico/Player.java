@@ -12,7 +12,6 @@ public class Player extends Person {
 	
 	//Data about the Player
 	String title;
-	String fed;
 	String state;
 	String city;
 	String club;
@@ -63,12 +62,6 @@ public class Player extends Person {
 	}
 	public void setTitle(String title) {
 		this.title = title;
-	}
-	public String getFed() {
-		return fed;
-	}
-	public void setFed(String fed) {
-		this.fed = fed;
 	}
 	public String getState() {
 		return state;

@@ -5,7 +5,6 @@ public class Referee extends Person {
 	//Data about the Referee
 	String catRe;
 	String idRe;
-	String fed;
 	int isOrg;
 	
 	
@@ -20,11 +19,5 @@ public class Referee extends Person {
 	}
 	public void setCatRe(String catRe) {
 		this.catRe = catRe;
-	}
-	public String getFed() {
-		return fed;
-	}
-	public void setFed(String fed) {
-		this.fed = fed;
 	}
 }
