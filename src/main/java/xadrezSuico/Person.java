@@ -10,6 +10,7 @@ public class Person {
 	String lastName;
 	String sex;
 	Date birth;
+	Federation fed;
 	
 	public int getId() {
 		return id;
