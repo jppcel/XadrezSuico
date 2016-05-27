@@ -3,19 +3,26 @@ package xadrezSuico;
 public class Player extends Person {
 	
 	//Data about the rating of Player
+	// International Rating
 	String intlId;
 	int intRa;
+	// Country Rating
 	String conId;
 	int conRa;
+	// Local Rating
 	String locId;
 	int locRa;
 	
 	//Data about the Player
+	// Player's Title (in chess)
 	String title;
+	// Player's Location
 	String state;
 	String city;
+	// Player's Club
 	String club;
-	int latEn;
+	// About the Tournament
+	int latEn; // 
 	int witD;
 	float bonus;
 	int[] byes;

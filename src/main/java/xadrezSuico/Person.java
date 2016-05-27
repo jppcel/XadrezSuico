@@ -6,10 +6,14 @@ public class Person {
 	
 	//Data about the Person
 	int id;
+	//Name
 	String firstName;
 	String lastName;
+	//Sex
 	String sex;
+	// Date of Birth
 	Date birth;
+	// Federation of Person
 	Federation fed;
 	
 	public int getId() {
