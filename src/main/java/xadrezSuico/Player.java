@@ -15,7 +15,7 @@ public class Player extends Person {
 	
 	//Data about the Player
 	// Player's Title (in chess)
-	String title;
+	Title title;
 	// Player's Location
 	String state;
 	String city;

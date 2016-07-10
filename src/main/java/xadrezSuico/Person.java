@@ -10,7 +10,7 @@ public class Person {
 	String firstName;
 	String lastName;
 	//Sex
-	String sex;
+	Sex sex;
 	// Date of Birth
 	Date birth;
 	// Federation of Person
@@ -34,10 +34,10 @@ public class Person {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-	public String getSex() {
+	public Sex getSex() {
 		return sex;
 	}
-	public void setSex(String sex) {
+	public void setSex(Sex sex) {
 		this.sex = sex;
 	}
 	public Date getBirth() {
