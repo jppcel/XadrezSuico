@@ -1,7 +1,5 @@
 package xadrezSuico.view;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 
 import net.miginfocom.swing.MigLayout;
@@ -26,21 +24,6 @@ public class DefaultView extends JFrame {
 	 */
 	private static final long serialVersionUID = -667634039112657313L;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					DefaultView frame = new DefaultView();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
@@ -131,7 +114,7 @@ public class DefaultView extends JFrame {
 		JPanel panelContent = new JPanel();
 		getContentPane().add(panelContent, BorderLayout.SOUTH);
 		
-		JLabel lblXadrezSuio = new JLabel("© " + Calendar.getInstance().get(Calendar.YEAR) + " Xadrez Sui\u00E7o - Todos os Direitos Reservados. Software open-source licenciado sob a licen\u00E7a MIT.");
+		JLabel lblXadrezSuio = new JLabel("ï¿½ " + Calendar.getInstance().get(Calendar.YEAR) + " Xadrez Sui\u00E7o - Todos os Direitos Reservados. Software open-source licenciado sob a licen\u00E7a MIT.");
 		panelContent.add(lblXadrezSuio);
 		
 		
