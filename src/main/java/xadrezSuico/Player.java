@@ -4,28 +4,25 @@ public class Player extends Person {
 	
 	//Data about the rating of Player
 	// International Rating
-	String intlId;
-	int intRa;
+	private String intlId;
+	private int intRa;
 	// Country Rating
-	String conId;
-	int conRa;
+	private String conId;
+	private int conRa;
 	// Local Rating
-	String locId;
-	int locRa;
+	private String locId;
+	private int locRa;
 	
 	//Data about the Player
 	// Player's Title (in chess)
-	Title title;
-	// Player's Location
-	String state;
-	String city;
+	private Title title;
 	// Player's Club
-	String club;
+	private Club club;
 	// About the Tournament
-	int latEn; // 
-	int witD;
-	float bonus;
-	int[] byes;
+	private int latEn;
+	private int witD;
+	private float bonus;
+	private int[] byes;
 	
 	
 	public String getIntlId() {
@@ -64,28 +61,16 @@ public class Player extends Person {
 	public void setLocRa(int locRa) {
 		this.locRa = locRa;
 	}
-	public String getTitle() {
+	public Title getTitle() {
 		return title;
 	}
-	public void setTitle(String title) {
+	public void setTitle(Title title) {
 		this.title = title;
 	}
-	public String getState() {
-		return state;
-	}
-	public void setState(String state) {
-		this.state = state;
-	}
-	public String getCity() {
-		return city;
-	}
-	public void setCity(String city) {
-		this.city = city;
-	}
-	public String getClub() {
+	public Club getClub() {
 		return club;
 	}
-	public void setClub(String club) {
+	public void setClub(Club club) {
 		this.club = club;
 	}
 	public int getLatEn() {

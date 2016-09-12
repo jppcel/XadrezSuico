@@ -1,0 +1,4 @@
+DROP TABLE IF EXISTS player;
+DROP TABLE IF EXISTS city, sex, title, club;
+DROP TABLE IF EXISTS state;
+DROP TABLE IF EXISTS federation;

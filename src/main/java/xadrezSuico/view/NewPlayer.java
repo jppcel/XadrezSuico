@@ -1,6 +1,5 @@
 package xadrezSuico.view;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -8,6 +7,9 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import org.jdesktop.swingx.JXDatePicker;
+
+import xadrezSuico.Federation;
+import xadrezSuico.Federations;
 
 import java.awt.GridBagLayout;
 import javax.swing.JLabel;
@@ -29,6 +31,12 @@ import java.awt.event.MouseEvent;
 
 public class NewPlayer extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3659597525595119489L;
+	
+	
 	private JPanel contentPane;
 	private JTextField tf_name;
 	private JTextField tf_lastName;
@@ -38,7 +46,7 @@ public class NewPlayer extends JFrame {
 	private JTextField tf_conRa;
 	private JTextField tf_locId;
 	private JTextField tf_locRa;
-	private JTextField tf_club;
+	private JTextField textField;
 
 	/**
 	 * Launch the application.
@@ -62,7 +70,7 @@ public class NewPlayer extends JFrame {
 	public NewPlayer() {
 		setResizable(false);
 		setTitle("Novo Enxadrista");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 600, 400);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -102,6 +110,7 @@ public class NewPlayer extends JFrame {
 		contentPane.add(lblSobrenome, gbc_lblSobrenome);
 		
 		tf_lastName = new JTextField();
+		tf_lastName.setFont(tf_lastName.getFont().deriveFont(tf_lastName.getFont().getStyle() | Font.BOLD));
 		tf_lastName.setToolTipText("Sobrenome do Enxadrista");
 		GridBagConstraints gbc_lastName = new GridBagConstraints();
 		gbc_lastName.insets = new Insets(0, 0, 5, 0);
@@ -127,23 +136,22 @@ public class NewPlayer extends JFrame {
 		gbc_sex.gridy = 1;
 		contentPane.add(cb_sex, gbc_sex);
 		
-		JLabel lblDataDeNascimento = new JLabel("Data de Nascimento");
+		JLabel lblDataDeNascimento = new JLabel("Nascimento");
 		GridBagConstraints gbc_lblDataDeNascimento = new GridBagConstraints();
+		gbc_lblDataDeNascimento.anchor = GridBagConstraints.EAST;
 		gbc_lblDataDeNascimento.insets = new Insets(0, 0, 5, 5);
 		gbc_lblDataDeNascimento.gridx = 2;
 		gbc_lblDataDeNascimento.gridy = 1;
 		contentPane.add(lblDataDeNascimento, gbc_lblDataDeNascimento);
 		
-		JXDatePicker picker = new JXDatePicker();
-		picker.getEditor().setToolTipText("Data de Nascimento(Formato: dd/mm/aaaa)");
-        picker.setDate(Calendar.getInstance().getTime());
-        picker.setFormats(new SimpleDateFormat("dd/MM/yyyy"));
-		GridBagConstraints gbc_picker = new GridBagConstraints();
-		gbc_picker.insets = new Insets(0, 0, 5, 0);
-		gbc_picker.fill = GridBagConstraints.HORIZONTAL;
-		gbc_picker.gridx = 3;
-		gbc_picker.gridy = 1;
-		contentPane.add(picker, gbc_picker);
+		textField = new JTextField();
+		GridBagConstraints gbc_textField = new GridBagConstraints();
+		gbc_textField.insets = new Insets(0, 0, 5, 0);
+		gbc_textField.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textField.gridx = 3;
+		gbc_textField.gridy = 1;
+		contentPane.add(textField, gbc_textField);
+		textField.setColumns(10);
 		
 		JLabel lblFederao = new JLabel("Federa\u00E7\u00E3o");
 		lblFederao.setHorizontalAlignment(SwingConstants.CENTER);
@@ -154,8 +162,14 @@ public class NewPlayer extends JFrame {
 		gbc_lblFederao.gridy = 2;
 		contentPane.add(lblFederao, gbc_lblFederao);
 		
+
+		Federations fs = new Federations();
 		JComboBox cb_fed = new JComboBox();
 		cb_fed.setToolTipText("Federa\u00E7\u00E3o do Enxadrista");
+		for(Integer k : fs.getFederations().keySet()){
+			cb_fed.addItem(fs.getFederation(k));
+		}
+		cb_fed.setSelectedIndex(32);
 		GridBagConstraints gbc_federation = new GridBagConstraints();
 		gbc_federation.insets = new Insets(0, 0, 5, 0);
 		gbc_federation.gridwidth = 3;
@@ -171,13 +185,14 @@ public class NewPlayer extends JFrame {
 		gbc_lblTtulo.gridy = 3;
 		contentPane.add(lblTtulo, gbc_lblTtulo);
 		
-		JComboBox comboBox = new JComboBox();
-		GridBagConstraints gbc_comboBox = new GridBagConstraints();
-		gbc_comboBox.insets = new Insets(0, 0, 5, 5);
-		gbc_comboBox.fill = GridBagConstraints.HORIZONTAL;
-		gbc_comboBox.gridx = 1;
-		gbc_comboBox.gridy = 3;
-		contentPane.add(comboBox, gbc_comboBox);
+		JComboBox<String> cb_title = new JComboBox<String>();
+		cb_title.setEditable(true);
+		GridBagConstraints gbc_cb_title = new GridBagConstraints();
+		gbc_cb_title.insets = new Insets(0, 0, 5, 5);
+		gbc_cb_title.fill = GridBagConstraints.HORIZONTAL;
+		gbc_cb_title.gridx = 1;
+		gbc_cb_title.gridy = 3;
+		contentPane.add(cb_title, gbc_cb_title);
 		
 		JLabel lblNewLabel_2 = new JLabel("Clube");
 		GridBagConstraints gbc_lblNewLabel_2 = new GridBagConstraints();
@@ -187,14 +202,13 @@ public class NewPlayer extends JFrame {
 		gbc_lblNewLabel_2.gridy = 3;
 		contentPane.add(lblNewLabel_2, gbc_lblNewLabel_2);
 		
-		tf_club = new JTextField();
-		GridBagConstraints gbc_tf_club = new GridBagConstraints();
-		gbc_tf_club.insets = new Insets(0, 0, 5, 0);
-		gbc_tf_club.fill = GridBagConstraints.HORIZONTAL;
-		gbc_tf_club.gridx = 3;
-		gbc_tf_club.gridy = 3;
-		contentPane.add(tf_club, gbc_tf_club);
-		tf_club.setColumns(10);
+		JComboBox cb_club = new JComboBox();
+		GridBagConstraints gbc_cb_club = new GridBagConstraints();
+		gbc_cb_club.insets = new Insets(0, 0, 5, 0);
+		gbc_cb_club.fill = GridBagConstraints.HORIZONTAL;
+		gbc_cb_club.gridx = 3;
+		gbc_cb_club.gridy = 3;
+		contentPane.add(cb_club, gbc_cb_club);
 		
 		JSeparator separator = new JSeparator();
 		GridBagConstraints gbc_separator = new GridBagConstraints();
@@ -224,7 +238,7 @@ public class NewPlayer extends JFrame {
 		contentPane.add(separator_1, gbc_separator_1);
 		
 		JLabel lblNewLabel_1 = new JLabel("Internacional");
-		lblNewLabel_1.setFont(new Font("Arial", Font.PLAIN, 11));
+		lblNewLabel_1.setFont(lblNewLabel_1.getFont().deriveFont(lblNewLabel_1.getFont().getStyle() | Font.BOLD));
 		GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
 		gbc_lblNewLabel_1.insets = new Insets(0, 0, 5, 0);
 		gbc_lblNewLabel_1.gridwidth = 4;
@@ -381,7 +395,7 @@ public class NewPlayer extends JFrame {
 		GridBagConstraints gbc_btnLimpar_1 = new GridBagConstraints();
 		gbc_btnLimpar_1.fill = GridBagConstraints.VERTICAL;
 		gbc_btnLimpar_1.gridheight = 2;
-		gbc_btnLimpar_1.insets = new Insets(0, 0, 5, 5);
+		gbc_btnLimpar_1.insets = new Insets(0, 0, 0, 5);
 		gbc_btnLimpar_1.gridx = 0;
 		gbc_btnLimpar_1.gridy = 16;
 		contentPane.add(btnLimpar_1, gbc_btnLimpar_1);
@@ -393,14 +407,10 @@ public class NewPlayer extends JFrame {
 				setVisible(false);
 			}
 		});
-		btnLimpar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
 		GridBagConstraints gbc_btnLimpar = new GridBagConstraints();
 		gbc_btnLimpar.fill = GridBagConstraints.BOTH;
 		gbc_btnLimpar.gridheight = 2;
-		gbc_btnLimpar.insets = new Insets(0, 0, 5, 5);
+		gbc_btnLimpar.insets = new Insets(0, 0, 0, 5);
 		gbc_btnLimpar.gridx = 1;
 		gbc_btnLimpar.gridy = 16;
 		contentPane.add(btnLimpar, gbc_btnLimpar);
@@ -410,7 +420,6 @@ public class NewPlayer extends JFrame {
 		gbc_btnCadastrar.fill = GridBagConstraints.BOTH;
 		gbc_btnCadastrar.gridheight = 2;
 		gbc_btnCadastrar.gridwidth = 2;
-		gbc_btnCadastrar.insets = new Insets(0, 0, 5, 0);
 		gbc_btnCadastrar.gridx = 2;
 		gbc_btnCadastrar.gridy = 16;
 		contentPane.add(btnCadastrar, gbc_btnCadastrar);

@@ -5,17 +5,26 @@ import java.util.Date;
 public class Person {
 	
 	//Data about the Person
-	int id;
+	//Person's ID on Database
+	private int id;
 	//Name
-	String firstName;
-	String lastName;
+	private String firstName;
+	private String lastName;
 	//Sex
-	Sex sex;
+	private Sex sex;
 	// Date of Birth
-	Date birth;
+	private Date birth;
 	// Federation of Person
-	Federation fed;
+	private Federation fed;
+	// Player's Location
+	private City city;
 	
+	public City getCity() {
+		return city;
+	}
+	public void setCity(City city) {
+		this.city = city;
+	}
 	public int getId() {
 		return id;
 	}
@@ -45,5 +54,11 @@ public class Person {
 	}
 	public void setBirth(Date birth) {
 		this.birth = birth;
+	}
+	public Federation getFederation(){
+		return this.fed;
+	}
+	public void setFederation(Federation fed){
+		this.fed = fed;
 	}
 }

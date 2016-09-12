@@ -2,12 +2,14 @@ package xadrezSuico.view;
 
 import javax.swing.JFrame;
 
-import net.miginfocom.swing.MigLayout;
-
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JSeparator;
+
+import xadrezSuico.DBCreator;
+import xadrezSuico.SoftwareProperties;
+
 import java.util.Calendar;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
@@ -77,32 +79,95 @@ public class DefaultView extends JFrame {
 		});
 		mnPessoa.add(mntmNovoEnxadrista);
 		
-		JMenuItem mntmEditarEnxadrista = new JMenuItem("Editar Enxadrista");
+		JMenuItem mntmEditarEnxadrista = new JMenuItem("Listar Enxadristas");
 		mnPessoa.add(mntmEditarEnxadrista);
 		
 		JMenuItem mntmExportarEnxadristas = new JMenuItem("Exportar Enxadristas");
 		mnPessoa.add(mntmExportarEnxadristas);
 		
-		JSeparator separator_1 = new JSeparator();
-		mnPessoa.add(separator_1);
+		JMenu mnrbitro = new JMenu("Árbitro");
+		menuBar.add(mnrbitro);
 		
 		JMenuItem mntmNovoArbitro = new JMenuItem("Novo \u00C1rbitro");
-		mnPessoa.add(mntmNovoArbitro);
+		mnrbitro.add(mntmNovoArbitro);
 		
-		JMenuItem mntmEditarrbitro = new JMenuItem("Editar \u00C1rbitro");
-		mnPessoa.add(mntmEditarrbitro);
+		JMenuItem mntmEditarrbitro = new JMenuItem("Listar Árbitros");
+		mnrbitro.add(mntmEditarrbitro);
 		
 		JMenuItem mntmExportarrbitros = new JMenuItem("Exportar \u00C1rbitros");
-		mnPessoa.add(mntmExportarrbitros);
+		mnrbitro.add(mntmExportarrbitros);
+		mntmNovoArbitro.addMouseListener(new MouseAdapter(){
+			public void mouseReleased(MouseEvent e) {
+				NewReferee nr = new NewReferee();
+				nr.setVisible(true);
+			}
+		});
+		
+		JMenu mnClube = new JMenu("Clube");
+		menuBar.add(mnClube);
+		
+		JMenuItem mntmNovoClube = new JMenuItem("Novo Clube");
+		mntmNovoClube.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				NewClub nc = new NewClub();
+				nc.setVisible(true);
+			}
+		});
+		mnClube.add(mntmNovoClube);
+		
+		JMenuItem mntmEditarClube = new JMenuItem("Listar Clubes");
+		mnClube.add(mntmEditarClube);
+		
+		JMenuItem mntmExportarClubes = new JMenuItem("Exportar Clubes");
+		mnClube.add(mntmExportarClubes);
 		
 		JMenu mnTorneio = new JMenu("Torneio");
 		menuBar.add(mnTorneio);
 		
-		JMenuItem mntmOpesDoTorneio = new JMenuItem("Op\u00E7\u00F5es do Torneio");
+		JMenuItem mntmOpesDoTorneio = new JMenuItem("Novo Torneio");
 		mnTorneio.add(mntmOpesDoTorneio);
 		
-		JMenuItem mntmExportarTorneio = new JMenuItem("Exportar Torneio");
+		JMenuItem mntmExportarTorneio = new JMenuItem("Abrir Torneio");
 		mnTorneio.add(mntmExportarTorneio);
+		
+		JMenuItem mntmExportarTorneios = new JMenuItem("Exportar Torneio(s)");
+		mnTorneio.add(mntmExportarTorneios);
+		
+		JMenu mnConfiguraes = new JMenu("Configurações");
+		menuBar.add(mnConfiguraes);
+		
+		JMenuItem mntmRestaurarBancoDe = new JMenuItem("Restaurar Banco de Dados ao Padrão");
+		mntmRestaurarBancoDe.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				DBCreator db = new DBCreator();
+				db.restoreDatabaseDefault();
+			}
+		});
+		
+		JMenuItem mntmCriarBancoDe = new JMenuItem("Criar Banco de Dados");
+		mntmCriarBancoDe.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				DBCreator db = new DBCreator();
+				db.createDatabase();
+			}
+		});
+		mnConfiguraes.add(mntmCriarBancoDe);
+		mnConfiguraes.add(mntmRestaurarBancoDe);
+		
+		JSeparator separator_2 = new JSeparator();
+		mnConfiguraes.add(separator_2);
+		
+		JMenuItem mntmCriarPropriedades = new JMenuItem("Criar Propriedades");
+		mntmCriarPropriedades.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				new SoftwareProperties(1);
+			}
+		});
+		mnConfiguraes.add(mntmCriarPropriedades);
 		
 		JPanel panelTitle = new JPanel();
 		getContentPane().add(panelTitle, BorderLayout.NORTH);

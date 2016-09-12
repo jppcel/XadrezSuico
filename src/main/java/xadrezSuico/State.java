@@ -1,13 +1,10 @@
 package xadrezSuico;
 
-public class Federation {
-	// Federation's ID on Database
+public class State {
 	private int id;
-	// Federation's Name
-	private String name;
-	// Federation's Abbreviation
+	private String name; 
 	private String abb;
-	
+	private Federation fed;
 	public int getId() {
 		return id;
 	}
@@ -26,12 +23,10 @@ public class Federation {
 	public void setAbb(String abb) {
 		this.abb = abb;
 	}
-	public void clear(){
-		this.id = 0;
-		this.name = null;
-		this.abb = null;
+	public Federation getFed() {
+		return fed;
 	}
-	public String toString(){
-		return this.id + " - " + this.name;
+	public void setFed(Federation fed) {
+		this.fed = fed;
 	}
 }
