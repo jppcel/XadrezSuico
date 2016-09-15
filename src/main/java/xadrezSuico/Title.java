@@ -2,6 +2,7 @@ package xadrezSuico;
 
 public enum Title {
 	
+	NONE(0, "None", "NONE"),
 	GM(1,"Grandmaster", "GM"),
 	IM(2,"International Master", "IM"),
 	FM(3, "FIDE Master", "FM"),
