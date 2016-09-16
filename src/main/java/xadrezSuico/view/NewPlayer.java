@@ -6,26 +6,22 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import org.jdesktop.swingx.JXDatePicker;
-
-import xadrezSuico.Federation;
+import xadrezSuico.Club;
 import xadrezSuico.Federations;
+import xadrezSuico.Sex;
+import xadrezSuico.Title;
 
 import java.awt.GridBagLayout;
 import javax.swing.JLabel;
 import java.awt.GridBagConstraints;
 import javax.swing.JTextField;
 import java.awt.Insets;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 
 import javax.swing.SwingConstants;
 import javax.swing.JComboBox;
 import javax.swing.JSeparator;
 import java.awt.Font;
 import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -127,7 +123,7 @@ public class NewPlayer extends JFrame {
 		gbc_lblSexo.gridy = 1;
 		contentPane.add(lblSexo, gbc_lblSexo);
 		
-		JComboBox cb_sex = new JComboBox();
+		JComboBox cb_sex = new JComboBox(Sex.values());
 		cb_sex.setToolTipText("Sexo do Enxadrista");
 		GridBagConstraints gbc_sex = new GridBagConstraints();
 		gbc_sex.insets = new Insets(0, 0, 5, 5);
@@ -185,7 +181,7 @@ public class NewPlayer extends JFrame {
 		gbc_lblTtulo.gridy = 3;
 		contentPane.add(lblTtulo, gbc_lblTtulo);
 		
-		JComboBox<String> cb_title = new JComboBox<String>();
+		JComboBox cb_title = new JComboBox(Title.values());
 		cb_title.setEditable(true);
 		GridBagConstraints gbc_cb_title = new GridBagConstraints();
 		gbc_cb_title.insets = new Insets(0, 0, 5, 5);
