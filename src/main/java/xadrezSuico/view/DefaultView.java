@@ -51,9 +51,6 @@ public class DefaultView extends JFrame {
 		JMenuItem mntmAbrirTorneio = new JMenuItem("Abrir Torneio");
 		mnArquivo.add(mntmAbrirTorneio);
 		
-		final JPanel panelC = new JPanel();
-		getContentPane().add(panelC, BorderLayout.CENTER);
-		
 		JSeparator separator = new JSeparator();
 		mnArquivo.add(separator);
 		
@@ -169,18 +166,14 @@ public class DefaultView extends JFrame {
 		});
 		mnConfiguraes.add(mntmCriarPropriedades);
 		
-		JPanel panelTitle = new JPanel();
-		getContentPane().add(panelTitle, BorderLayout.NORTH);
-		
-		JLabel lblSejaBemvindoAo = new JLabel("Seja bem-vindo ao Xadrez Su\u00ED\u00E7o");
-		lblSejaBemvindoAo.setFont(new Font("Arial", Font.BOLD, 24));
-		panelTitle.add(lblSejaBemvindoAo);
-		
 		JPanel panelContent = new JPanel();
 		getContentPane().add(panelContent, BorderLayout.SOUTH);
 		
-		JLabel lblXadrezSuio = new JLabel("� " + Calendar.getInstance().get(Calendar.YEAR) + " Xadrez Sui\u00E7o - Todos os Direitos Reservados. Software open-source licenciado sob a licen\u00E7a MIT.");
+		JLabel lblXadrezSuio = new JLabel("C " + Calendar.getInstance().get(Calendar.YEAR) + " Xadrez Sui\u00E7o - Todos os Direitos Reservados. Software open-source licenciado sob a licen\u00E7a Apache 2.0.");
 		panelContent.add(lblXadrezSuio);
+		
+		JPanel panel = new JPanel();
+		getContentPane().add(panel, BorderLayout.CENTER);
 		
 		
 	}
