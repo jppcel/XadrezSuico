@@ -2,11 +2,17 @@ package xadrezSuico.control;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.Map;
 
+import xadrezSuico.Cities;
 import xadrezSuico.DBConnection;
+import xadrezSuico.Federations;
 import xadrezSuico.Player;
+import xadrezSuico.Sex;
+import xadrezSuico.Title;
 import xadrezSuico.interfaces.Dao;
 
 public class PlayerDao extends DBConnection implements Dao<Player, Integer> {
@@ -61,7 +67,42 @@ public class PlayerDao extends DBConnection implements Dao<Player, Integer> {
 
 	@Override
 	public Map<Integer, Player> all() {
-		// TODO Auto-generated method stub
+		Map<Integer, Player> players = new HashMap<Integer, Player>();
+		Federations federations = new Federations();
+		Cities cities = new Cities();
+		Clubs clubs = new Clubs();
+		try {
+			players.clear();
+			Connection c = openConnection();
+			String sql = "SELECT * FROM player;";
+			PreparedStatement ps = c.prepareStatement(sql);
+			ps.executeQuery();
+			ResultSet rs = ps.getResultSet();
+			if(!rs.wasNull()){
+				while(rs.next()){
+					Player p = new Player();
+					p.setFirstName(rs.getString("firstName"));
+					p.setLastName(rs.getString("lastName"));
+					p.setSex(Sex.values()[rs.getInt("sex")]);
+					p.setBirth(new java.util.Date(rs.getDate("birth").getTime()));
+					p.setFederation(federations.getFederation(rs.getInt("fed")));
+					p.setCity(cities.getCity(rs.getInt("city")));
+					p.setIntlId(rs.getString("intlId"));
+					p.setIntRa(rs.getInt("intlRa"));
+					p.setConId(rs.getString("conId"));
+					p.setConRa(rs.getInt("conRa"));
+					p.setLocId(rs.getString("locId"));
+					p.setLocRa(rs.getInt("locRa"));
+					p.setTitle(Title.values()[rs.getInt("title")]);
+					p.setClub(clubs.getClub(rs.getInt("club")));
+					players.put(rs.getInt("id"), p);
+				}
+			}
+			return players;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return null;
 	}
 
